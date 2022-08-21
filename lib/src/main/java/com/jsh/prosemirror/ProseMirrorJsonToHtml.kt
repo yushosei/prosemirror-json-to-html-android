@@ -1,5 +1,6 @@
-package com.jsh.prosemirror.util
+package com.jsh.prosemirror
 
+import com.google.gson.Gson
 import com.jsh.prosemirror.data.Attrs
 import com.jsh.prosemirror.data.Content
 import com.jsh.prosemirror.data.Tag
@@ -16,9 +17,11 @@ class ProseMirrorJsonToHtml(
     var srcUrlFix: (String) -> String = { it }
 ) {
     companion object {
-        val default = ProseMirrorJsonToHtml()
+        val default: ProseMirrorJsonToHtml by lazy { ProseMirrorJsonToHtml() }
+        private val gson: Gson by lazy { Gson() }
 
         fun render(content: Content) = default.render(content)
+        fun render(json: String) = default.render(json)
 
         private val supportMarks = mapOf(
             Bold.type to Bold(),
@@ -37,6 +40,10 @@ class ProseMirrorJsonToHtml(
             OrderedList.type to OrderedList(),
             Paragraph.type to Paragraph()
         )
+    }
+
+    fun render(json: String): String {
+        return render(gson.fromJson(json, Content::class.java))
     }
 
     private fun Any?.toTagArray(): List<*> {

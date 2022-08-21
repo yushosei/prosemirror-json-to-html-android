@@ -42,7 +42,7 @@ afterEvaluate {
 
                 groupId = 'com.github.lo9ve3r4s'
                 artifactId = 'prosemirror-json-to-html-android'
-                version = '2.1'
+                version = '2.2'
             }
         }
     }
