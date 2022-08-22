@@ -13,7 +13,7 @@ Add the dependency below to your **module**'s `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.github.lo9ve3r4s:prosemirror-json-to-html-android:2.2'
+    implementation 'com.github.lo9ve3r4s:prosemirror-json-to-html-android:2.3'
 }
 ```
 And Add repositories
