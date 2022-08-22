@@ -52,7 +52,7 @@ val jsonString = "{
 }"
 
 // Use ProseMirrorWebView
-proseMirrorWebView.loadProseMirror(jsonString, "text/html", "UTF-8");
+proseMirrorWebView.loadProseMirrorJsonData(jsonString, "text/html", "UTF-8");
 
 // Or Use WebView
 val html = ProseMirrorJsonToHtml.render(jsonString)
@@ -64,7 +64,7 @@ webview.loadData(html, "text/html", "UTF-8");
 val content: Content = Content(...)  
 
 // Use ProseMirrorWebView
-proseMirrorWebView.loadProseMirror(content, "text/html", "UTF-8");
+proseMirrorWebView.loadProseMirrorData(content, "text/html", "UTF-8");
 
 // Or Use WebView
 val html = ProseMirrorJsonToHtml.render(content)
@@ -87,7 +87,7 @@ val parser = ProseMirrorJsonToHtml({
         })
         
 // Use ProseMirrorWebView
-proseMirrorWebView.loadProseMirror(content, "text/html", "UTF-8", parser);
+proseMirrorWebView.loadProseMirrorData(content, "text/html", "UTF-8", parser);
 
 // Or Use WebView
 val html = parser.render(content)

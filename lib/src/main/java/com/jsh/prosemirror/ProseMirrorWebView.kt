@@ -9,7 +9,7 @@ class ProseMirrorWebView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : WebView(context, attrs) {
 
-    fun loadProseMirror(
+    fun loadProseMirrorData(
         content: Content,
         mimeType: String,
         encoding: String,
@@ -18,7 +18,7 @@ class ProseMirrorWebView @JvmOverloads constructor(
         loadData(parser.render(content), mimeType, encoding)
     }
 
-    fun loadProseMirror(
+    fun loadProseMirrorJsonData(
         json: String,
         mimeType: String,
         encoding: String,
