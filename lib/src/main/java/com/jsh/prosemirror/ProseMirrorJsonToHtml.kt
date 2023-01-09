@@ -6,10 +6,7 @@ import com.jsh.prosemirror.data.Content
 import com.jsh.prosemirror.data.Tag
 import com.jsh.prosemirror.extension.htmlEntities
 import com.jsh.prosemirror.extension.join
-import com.jsh.prosemirror.mark.Bold
-import com.jsh.prosemirror.mark.Code
-import com.jsh.prosemirror.mark.Italic
-import com.jsh.prosemirror.mark.Link
+import com.jsh.prosemirror.mark.*
 import com.jsh.prosemirror.node.*
 
 class ProseMirrorJsonToHtml(
@@ -23,14 +20,14 @@ class ProseMirrorJsonToHtml(
         fun render(content: Content) = default.render(content)
         fun render(json: String) = default.render(json)
 
-        private val supportMarks = mapOf(
+        private val supportMarks = mutableMapOf(
             Bold.type to Bold(),
             Code.type to Code(),
             Italic.type to Italic(),
             Link.type to Link()
         )
 
-        private val supportNodes = mapOf(
+        private val supportNodes = mutableMapOf(
             Blockquote.type to Blockquote(),
             BulletList.type to BulletList(),
             CodeBlock.type to CodeBlock(),
@@ -38,8 +35,17 @@ class ProseMirrorJsonToHtml(
             Image.type to Image(),
             ItemList.type to ItemList(),
             OrderedList.type to OrderedList(),
-            Paragraph.type to Paragraph()
+            Paragraph.type to Paragraph(),
+            // Iframe.type to Iframe()
         )
+    }
+
+    fun appendSupportMark(type: String, mark: SupportMark) {
+        supportMarks[type] = mark
+    }
+
+    fun appendSupportNode(type: String, node: SupportNode) {
+        supportNodes[type] = node
     }
 
     fun render(json: String): String {
