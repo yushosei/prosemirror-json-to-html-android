@@ -13,7 +13,7 @@ Add the dependency below to your **module**'s `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.github.lo9ve3r4s:prosemirror-json-to-html-android:2.3'
+    implementation 'com.github.yushosei:prosemirror-json-to-html-android:2.5'
 }
 ```
 And Add repositories
@@ -69,6 +69,31 @@ proseMirrorWebView.loadProseMirrorData(content, "text/html", "UTF-8");
 // Or Use WebView
 val html = ProseMirrorJsonToHtml.render(content)
 webview.loadData(html, "text/html", "UTF-8");
+```
+
+### Append Custom Node
+#### your node
+```kotlin
+class Iframe : SupportNode {
+    companion object {
+        const val type = "iframe"
+    }
+
+    override fun tag(node: Content): Any {
+        return Tag(
+            tag = "iframe",
+            attrs = Attrs(
+                src = node.attrs?.src,
+                alt = node.attrs?.alt,
+                title = node.attrs?.title,
+            )
+        )
+    }
+}
+```
+#### append 
+```kotlin
+ProseMirrorJsonToHtml.default.appendSupportNode(Iframe.type, Iframe())
 ```
 
 ### Use With URL FIX
